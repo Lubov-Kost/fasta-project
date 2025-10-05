@@ -43,14 +43,14 @@ class Seq:
             str: 'nucleotide' или 'protein'
         """
 
-        if "U" in self.sequence or "T" in self.sequence:
+        protein_elements = set("ACDEFGHIKLMNPQRSTVWY")
+        nucleotide_elements = set('ATGCUN')
+        if all(element in nucleotide_elements for element in self.sequence):
             return "nucleotide"
+        elif all(element in protein_elements for element in self.sequence):
+            return "protein"
         else:
-            protein_elements = set("ACDEFGHIKLMNPQRSTVWY")
-            if all(element in protein_elements for element in self.sequence):
-                return "protein"
-            else:
-                return "unknown"
+            return "unknown"
 
     def __str__(self):
         """
@@ -72,3 +72,4 @@ class Seq:
         for i in range(0, len(self.sequence), 70):
             result += self.sequence[i : i + 70] + "\n"
         return result.rstrip()
+
