@@ -1,10 +1,13 @@
-from seq import Seq
-from fasta_reader import FastaReader
+from fasta import Seq, FastaReader
 
-seq = Seq("test", "ATCG")
+seq = Seq("test", "ATCGTUAACG")
 print(f"Длина: {len(seq)}")
 print(f"Тип: {seq.alphabet()}")
 
-reader = FastaReader("oop/big_example.fasta")
-for sequence in reader:
+reader_one = FastaReader("small_example.fasta")
+for sequence in reader_one:
+    print(sequence)
+
+reader_two = FastaReader("big_example.fasta")
+for sequence in reader_two:
     print(sequence)
