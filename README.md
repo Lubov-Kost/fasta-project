@@ -9,6 +9,19 @@
 - **`Seq`** - представляет отдельную последовательность
 - **`FastaReader`** - читает FASTA файлы с поддержкой больших файлов через генераторы
 
+## Возможности
+**Класс Seq:** 
+- Представление биологических последовательностей
+- Хранение заголовка и последовательности
+- Автоматическое определение алфавита (нуклеотидный/белковый)
+- Вывод в формате FASTA
+
+**Класс FastaReader:** 
+- Эффективная обработка FASTA файлов
+- Определение соответствия файла формату FASTA
+- Чтение через генераторы для больших файлов
+- Возвращение отдельных экземпляров класса Seq
+
 ## Установка
 
 ```bash
@@ -27,7 +40,7 @@ seq = Seq("test_sequence", "ATCGATCG")
 print(seq)  # Seq('test_sequence', 8, nucleotide)
 
 # Чтение FASTA файла
-reader = FastaReader("example.fasta")
+reader = FastaReader("small_example.fasta")
 for sequence in reader:
     print(f"{sequence.title}: {len(sequence)} bp")
 ```
@@ -64,7 +77,7 @@ ATCGATCG
 ```python
 from fasta import FastaReader
 
-reader = FastaReader("example.fasta")
+reader = FastaReader("small_example.fasta")
 for seq in reader:
     print(f"Заголовок: {seq.title}")
     print(f"Длина: {len(seq)}")
