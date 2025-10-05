@@ -114,14 +114,54 @@ fasta-project/
 ├── demo.py            # Демонстрация
 └── README.md          # Этот файл
 ```
+```mermaid
+classDiagram
+    direction TB
+    
+    note for Seq "• Представляет биологическую последовательность
+• Автоматически определяет тип
+• Поддерживает FASTA форматирование"
+    
+    note for FastaReader "• Читатель FASTA файлов
+• Работает с большими файлами
+• Использует генераторы"
 
-## Зависимости
+    class Seq {
+        <<Биологическая последовательность>>
+        
+        - title: str
+        - sequence: str
+        
+        + __init__(title: str, sequence: str)
+        + __str__() str
+        + __len__() int
+        + alphabet() str
+        + to_fasta() str
+    }
 
-**Для работы библиотеки:** нет зависимостей
+    class FastaReader {
+        <<Читатель FASTA файлов>>
+        
+        - path_to_file: str
+        
+        + __init__(path_to_file: str)
+        + _is_fasta() bool
+        + __iter__() Iterator[Seq]
+    }
 
-**Для разработки и сборки документации:**
-```bash
-pip install sphinx sphinx-rtd-theme
+    class ValueError {
+        <<exception>>
+        + message: str
+    }
+
+    class FileNotFoundError {
+        <<exception>>
+        + message: str
+    }
+
+    FastaReader --> Seq : создает
+    Seq ..> ValueError : выбрасывает
+    FastaReader ..> FileNotFoundError : выбрасывает
 ```
 
 ## Лицензия
