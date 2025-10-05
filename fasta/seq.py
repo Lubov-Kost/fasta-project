@@ -62,7 +62,7 @@ class Seq:
 
         sequence_type = self.alphabet()
         sequence_lenght = len(self)
-        return f"Seq('{self.title}', {sequence_lenght} нуклеотидов, {sequence_type})"
+        return f"Seq('{self.title}', {sequence_lenght}, {sequence_type})"
 
     def to_fasta(self):
         """
